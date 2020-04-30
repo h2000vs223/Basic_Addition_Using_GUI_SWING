@@ -73,7 +73,7 @@ class Calculator extends JFrame implements ActionListener
 			if( operation.equals("+")) { operation="Addition= "; l.setText( operation + ( num1 + num2 ) ); }
 			else if( operation.equals("-")) { operation="Subtraction= "; l.setText( operation + ( num1 - num2 ) ); }
 			else if( operation.equals("*")) { operation="Multiplication= "; l.setText( operation + ( num1 * num2 ) ); }
-			else if( operation.equals("/")) { operation="Division= "; l.setText( operation + ( num1 / num2 ) ); }
+			else if( operation.equals("/")) { operation="Division= "; l.setText( operation + ( (float)num1 / num2 ) ); }
 		}
 		catch(NumberFormatException e) { 
 			System.out.println("You entered either long number or invalid number\n\t\tPlease re-enter a valid Number");
