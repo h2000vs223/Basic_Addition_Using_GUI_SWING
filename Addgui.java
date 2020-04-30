@@ -12,18 +12,45 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.util.Scanner;
 public class Addgui {	//Name of Main class here is Addgui:)
 	public static void main(String[] args)
 	{
-		Addition obj=new Addition();
+		Scanner in=new Scanner(System.in);
+		System.out.println("WELCOME TO MY CALCULATOR APPLICATION");
+		System.out.print("Press a for addition\n\ts for subtraction\n\t\tm for multiplication\n\t\t\td for division: ");
+		String re=in.next().toLowerCase();
+		if(re.equals("a"))
+		{
+			Calculator.operation="+";
+			new Calculator();
+		}
+		else if(re.equals("s")) 
+			{
+			Calculator.operation="-";
+			new Calculator();
+			}
+		else if(re.equals("m")) 
+			{
+			Calculator.operation="*";
+			new Calculator();
+			}
+		else if(re.equals("d"))
+		{
+			Calculator.operation="/";
+			new Calculator();
+			}
+		else System.out.println("Invalid Input entered:(");
+		in.close();
 	}
 }
-class Addition extends JFrame implements ActionListener
+class Calculator extends JFrame implements ActionListener
 {
 	JTextField t1,t2;
 	JButton b;
 	JLabel l,l0,l1,l2;
-	public Addition()
+	static String operation="";
+	public Calculator()
 	{
 		t1 = new JTextField(20);
 		t2 = new JTextField(20);
@@ -42,9 +69,11 @@ class Addition extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent arg0) {
 		try
 		{
-			int num1=Integer.parseInt(t1.getText())	, num2=Integer.parseInt(t2.getText());
-			int value=num1 + num2;
-			l.setText( "Addition= " + value );
+			int num1=Integer.parseInt(t1.getText())	, num2=Integer.parseInt(t2.getText()) ;
+			if( operation.equals("+")) { operation="Addition= "; l.setText( operation + ( num1 + num2 ) ); }
+			else if( operation.equals("-")) { operation="Subtraction= "; l.setText( operation + ( num1 - num2 ) ); }
+			else if( operation.equals("*")) { operation="Multiplication= "; l.setText( operation + ( num1 * num2 ) ); }
+			else if( operation.equals("/")) { operation="Division= "; l.setText( operation + ( num1 / num2 ) ); }
 		}
 		catch(NumberFormatException e) { 
 			System.out.println("You entered either long number or invalid number\n\t\tPlease re-enter a valid Number");
